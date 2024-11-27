@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductListComponent from "./components/ProductListComponent";
-import AddProductComponent from "./components/AddProductComponent";
-import UpdateProductComponent from "./components/UpdateProductComponent";
-import LoginComponent from "./components/LoginComponent";
-import "bootstrap/dist/css/bootstrap.min.css";
+import ProductListComponent from "./pages/ProductList";
+import AddProductComponent from "./pages/AddProduct";
+import UpdateProductComponent from "./pages/UpdateProduct";
+import LoginComponent from "./pages/Login";
 
 const App = () => {
   return (

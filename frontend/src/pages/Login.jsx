@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../services/AuthenticationService";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginComponent = () => {
   const [username, setUsername] = useState("");

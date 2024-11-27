@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import ProductService from "../services/ProductService";
 import { useNavigate, useParams } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const UpdateProductComponent = () => {
   const { id } = useParams();

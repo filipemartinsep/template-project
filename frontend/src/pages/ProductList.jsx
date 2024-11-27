@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductService from "../services/ProductService";
 import { Link, useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductListComponent = () => {
   const [products, setProducts] = useState([]);
