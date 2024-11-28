@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import ProductService from "../services/ProductService";
+import { useState, useEffect, FormEventHandler } from "react";
+import ProductService, { IProduct } from "../services/ProductService";
 import { useNavigate, useParams } from "react-router-dom";
 
-const UpdateProductComponent = () => {
-  const { id } = useParams();
+const UpdateProduct = () => {
+  const params = useParams();
+  const id = params.id as string;
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState<number>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,9 +25,9 @@ const UpdateProductComponent = () => {
       });
   }, [id, navigate]);
 
-  const updateProduct = (e) => {
+  const updateProduct: FormEventHandler = (e) => {
     e.preventDefault();
-    const product = { name, description, price };
+    const product = { name, description, price } as IProduct;
     ProductService.updateProduct(product, id).then(() => {
       navigate("/products");
     });
@@ -39,7 +40,7 @@ const UpdateProductComponent = () => {
           <div className="card col-md-6 offset-md-3 offset-md-3">
             <h3 className="text-center">Update Product</h3>
             <div className="card-body">
-              <form>
+              <form onSubmit={updateProduct}>
                 <div className="form-group">
                   <label> Product Name: </label>
                   <input
@@ -63,14 +64,16 @@ const UpdateProductComponent = () => {
                 <div className="form-group">
                   <label> Product Price: </label>
                   <input
+                    type="number"
+                    required
                     placeholder="Price"
                     name="price"
                     className="form-control"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => setPrice(e.target.valueAsNumber)}
                   />
                 </div>
-                <button className="btn btn-success" onClick={updateProduct}>
+                <button type="submit" className="btn btn-success">
                   Save
                 </button>
               </form>
@@ -82,4 +85,4 @@ const UpdateProductComponent = () => {
   );
 };
 
-export default UpdateProductComponent;
+export default UpdateProduct;
